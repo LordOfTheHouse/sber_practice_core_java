@@ -15,6 +15,12 @@ public class Book {
         this.year = year;
     }
 
+    public Book(String title, Author author, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -22,6 +28,7 @@ public class Book {
     public void setAuthor(Author author) {
             this.author = author;
         }
+        
 
     public void setAuthor(String nameAuthor, String email, 
                             char gender) {
