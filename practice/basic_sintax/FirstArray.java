@@ -5,6 +5,7 @@ public class FirstArray {
 
     private int[] arr;
 
+    /*Конструктор*/
     public FirstArray(int[] a){
         arr = a;
     }
@@ -25,6 +26,11 @@ public class FirstArray {
     }
 
     /* Алгоритм для быстрой сортировки (задание 2)
+    * 1) Выбираем опорный элемент.
+    * 2) Сравнить все остальные элементы с опорным и переставить их
+    * в массиве так, чтобы разбить массив на три непрерывных отрезка.
+    * 3) Для отрезков значения в которых меньше и больше опорныъ значений выполнить 
+    * рекурсивно ту же последовательность операций.
      */
     public void quickSort(int low, int high) 
     {
@@ -77,7 +83,8 @@ public class FirstArray {
         }
         return max;
     }
-     /*Возвращает среднее значение последовательности (задание 4-5) */
+
+     /*Возвращает среднее арифметическое значение последовательности (задание 4-5) */
      static public double averagetArr(double arr2[]){
         double sum = 0;
         for(double el: arr2){
@@ -85,6 +92,7 @@ public class FirstArray {
         }
         return sum / arr2.length;
     }
+
     /*Выводит звездочки (задание 6)*/
     static public void printStars(int numbersOfStars, int rows){
         for(int i=0; i < rows; ++i){
@@ -95,7 +103,9 @@ public class FirstArray {
         }
     }
     
-    /*Поиск чисел Фибоначчи */
+    /*Поиск чисел Фибоначчи (Задание 7) 
+     * Каждый следующий член последовательности равен сумме двух предыдущих
+    */
 
     static public int[] fibonacci(int n){
         int[] a = new int[n];
@@ -105,6 +115,11 @@ public class FirstArray {
             a[i] = a[i-1] + a[i-2];
         }
         return a;
+    }
+
+    /*Возвращает массив */
+    public int[] getArr(){
+        return arr;
     }
 
     /*Выводит массив*/
