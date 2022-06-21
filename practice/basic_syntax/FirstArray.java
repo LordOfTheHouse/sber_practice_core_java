@@ -1,4 +1,4 @@
-package practice.basic_sintax;
+package practice.basic_syntax;
 
 
 public class FirstArray {

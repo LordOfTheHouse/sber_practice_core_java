@@ -1,4 +1,4 @@
-package practice.basic_sintax;
+package practice.basic_syntax;
 
 import java.io.IOException;
 import java.util.Scanner;
