@@ -73,7 +73,7 @@ public class FirstArray {
         return sequence;
     }
 
-    /*Возвращает максимальное число в последовательности (задание 4-5) */
+    /*Возвращает максимальное число в последовательности (задание 4) */
     static public double maxElementArr(double arr2[]){
         double max = arr2[0];
         for(double el: arr2){
@@ -84,13 +84,33 @@ public class FirstArray {
         return max;
     }
 
-     /*Возвращает среднее арифметическое значение последовательности (задание 4-5) */
+     /*Возвращает среднее арифметическое значение последовательности (задание 4) */
      static public double averagetArr(double arr2[]){
         double sum = 0;
         for(double el: arr2){
             sum += el;
         }
         return sum / arr2.length;
+    }
+
+    /*Ищет простые числа
+     * Простые чиcла - это числа которые имеют только 
+     * два делителя: 1 и само число
+     */
+    static public void primeNumbers(int low, int high){
+        for(int i = low; i < high; i++){
+            boolean flag = true;
+            for(int j = 2; j <= i / j; j++){
+                if((i % j) == 0){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag){
+                System.out.print(i + " ");
+                }
+        }
+        System.out.println();
     }
 
     /*Выводит звездочки (задание 6)*/

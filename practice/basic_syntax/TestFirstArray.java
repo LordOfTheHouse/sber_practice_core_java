@@ -38,8 +38,7 @@ public class TestFirstArray {
         FirstArray.printStars(5, 3);
 
         // задание 7
-        FirstArray fib = new FirstArray(FirstArray.fibonacci(11));
-        fib.printArray();
+        FirstArray.primeNumbers(2, 100);
 
         // задание 8
         System.out.println("Что это такое: синий, большой, с усами и полностью набит зайцами?");
