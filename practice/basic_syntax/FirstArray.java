@@ -93,9 +93,9 @@ public class FirstArray {
         return sum / arr2.length;
     }
 
-    /*Ищет простые числа
+    /*Ищет простые числа (задание 5)
      * Простые чиcла - это числа которые имеют только 
-     * два делителя: 1 и само число
+     * два делителя: 1 и само число 
      */
     static public void primeNumbers(int low, int high){
         for(int i = low; i < high; i++){
