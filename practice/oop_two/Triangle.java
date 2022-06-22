@@ -47,7 +47,5 @@ public class Triangle extends Figure{
     public void setSideC(double sideC) {
         this.sideC = sideC;
     }
-
-    
-    
+      
 }
