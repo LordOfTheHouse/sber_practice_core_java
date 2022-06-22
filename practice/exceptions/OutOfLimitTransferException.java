@@ -1,11 +1,12 @@
 package practice.exceptions;
 
-public class OutOfLimitTransferException extends BankOnlineException{
+public class OutOfLimitTransferException extends BankOnlineException {
 
-    public OutOfLimitTransferException() {}
+    public OutOfLimitTransferException() {
+    }
 
     public OutOfLimitTransferException(String message) {
         super(message);
     }
-    
+
 }

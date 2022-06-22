@@ -2,9 +2,10 @@ package practice.exceptions;
 
 public class BankOnlineException extends Exception {
 
-    BankOnlineException(){}
+    BankOnlineException() {
+    }
 
-    BankOnlineException(String message){
+    BankOnlineException(String message) {
         super(message);
     }
 }
