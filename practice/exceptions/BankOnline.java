@@ -8,7 +8,7 @@ public class BankOnline {
         try{
             cardNumber = deleteWhitespace(cardNumber);
             if(cardNumber == null || money == null){
-                throw new ArgumentIsNullException("The argument is null");
+                throw new ArgumentNullException("The argument is null");
             }else if(money > 50000){
                 throw new OutOfLimitTransferException("Exceeded the limit");
             }else if(money < 0){
@@ -21,7 +21,7 @@ public class BankOnline {
             }
             System.out.println("The operation was successful.");
 
-        }catch(ArgumentIsNullException eNull){
+        }catch(ArgumentNullException eNull){
             eNull.printStackTrace();
         }catch(OutOfLimitTransferException eLimit){
             eLimit.printStackTrace();
