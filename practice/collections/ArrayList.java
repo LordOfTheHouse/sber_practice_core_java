@@ -17,124 +17,91 @@ public class ArrayList implements List {
         obj = new Object[capacity];
         size = 0;
     }
-    
-    public void setSize(int s){
-        size = s;
-    }
 
     @Override
     public void add(int index, Object item) {
-        if (size == capacity){
+        if (size == capacity) {
             obj = copyList();
         }
-        try{
-            if(index > size || index < 0){
-                throw new IndexOutOfBoundsException();
-            }else if(index == size){
-                obj[index] = item; 
-                size++;
-            }else{
-                for(int i=size; i>index;i--){
-                    obj[i] = obj[i-1];
-                }
-                obj[index] = item;
-                size++;
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == size) {
+            obj[index] = item;
+            size++;
+        } else {
+            for (int i = size; i > index; i--) {
+                obj[i] = obj[i - 1];
             }
-        }catch(IndexOutOfBoundsException ex){
-            ex.printStackTrace();
-        } 
+            obj[index] = item;
+            size++;
+        }
     }
 
     @Override
     public Object get(int index) {
-        try {
-            if (index >= size) {
-                throw new IndexOutOfBoundsException();
-            } else {
-                return obj[index];
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            return obj[index];
         }
-        return null;
     }
 
     @Override
     public int indexOf(Object item) {
-        int index = -1;
         for (int i = 0; i < size; i++) {
             if (obj[i].equals(item)) {
-                index = i;
-                break;
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object item) {
-        int index = -1;
         for (int i = size - 1; i >= 0; --i) {
             if (obj[i].equals(item)) {
-                index = i;
-                break;
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 
     @Override
     public Object remove(int index) {
-        try{
-            if(index>=size || index < 0 || isEmpty()){
-                throw new IndexOutOfBoundsException();
-            }else{        
-                Object el = obj[index];
-                for(int i = index; i < size; i++){
-                    obj[i] = obj[i+1];
-                }
-                size--;
-                return el;
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            Object el = obj[index];
+            for (int i = index; i < size; i++) {
+                obj[i] = obj[i + 1];
             }
-
-        }catch(IndexOutOfBoundsException ex){
-            ex.printStackTrace();
+            size--;
+            return el;
         }
-        return null;
     }
 
     @Override
     public void set(int index, Object item) {
-        try {
-            if (index < size && index >= 0) {
-                obj[index] = item;
-            }else if(index == size){
-                add(item);
-            } else {
-                throw new IndexOutOfBoundsException();
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == size) {
+            add(item);
+        } else {
+            obj[index] = item;
         }
     }
 
     @Override
-    public List subList(int from, int to) { 
-        try{
-            if(to > size){
-                throw new IndexOutOfBoundsException();
-            }else{
-                ArrayList subObj = new ArrayList();
-                for(int i = from; i < to; i++){
-                    subObj.add(obj[i]);
-                }
-                return subObj;
+    public List subList(int from, int to) {
+        if (to > size || from < 0 || to < from || to < 0) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            ArrayList subObj = new ArrayList();
+            for (int i = from; i < to; i++) {
+                subObj.add(obj[i]);
             }
-        }catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
+            return subObj;
         }
-        return new ArrayList();
-        
     }
 
     @Override
@@ -186,17 +153,18 @@ public class ArrayList implements List {
 
     @Override
     public boolean remove(Object item) {
-        if(!contains(item)){
+        if (size == 0) {
             return false;
         }
-        for(int i = 0; i<size; i++){
-            if(obj[i].equals(item)){
+        int sizeCopy = size;
+        for (int i = 0; i < size; i++) {
+            if (obj[i].equals(item)) {
                 remove(i);
                 remove(item);
                 break;
             }
         }
-        return true;
+        return !(sizeCopy == size);
     }
 
     @Override
@@ -204,7 +172,7 @@ public class ArrayList implements List {
         return size;
     }
 
-    public Object[] getObj() {
+    private Object[] getObj() {
         return obj;
     }
 
@@ -215,4 +183,5 @@ public class ArrayList implements List {
     public int getSize() {
         return size;
     }
+
 }
