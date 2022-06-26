@@ -136,7 +136,7 @@ public class LinkedList implements List, Deque {
 
     @Override
     public List subList(int from, int to) {
-        if (to >= size || from > to || from < 0 || to < 0)
+        if (to > size || from > to || from < 0 || to < 0)
             throw new IndexOutOfBoundsException();
         LinkedList newList = new LinkedList();
         Node buff = begin.next;
