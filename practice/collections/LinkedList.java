@@ -22,6 +22,8 @@ public class LinkedList implements List, Deque {
             throw new NoSuchElementException();
         } else if (index == size) {
             addLast(item);
+        } else if (index == 0) {
+            addFirst(item);
         } else {
             Node buff = begin.next;
             for (int i = 0; i < index; i++) {
