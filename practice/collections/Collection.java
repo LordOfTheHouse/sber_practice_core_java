@@ -1,11 +1,10 @@
 package practice.collections;
 
-
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public interface Collection extends java.lang.Iterable<Object>{
+public interface Collection extends java.lang.Iterable<Object> {
 
     int size();
 
@@ -19,16 +18,16 @@ public interface Collection extends java.lang.Iterable<Object>{
 
     void clear();
 
-   Iterator<Object> iterator();
+    Iterator<Object> iterator();
 
-@Override
-default void forEach(Consumer<? super Object> action) {
-    Iterable.super.forEach(action);
-}
+    @Override
+    default void forEach(Consumer<? super Object> action) {
+        Iterable.super.forEach(action);
+    }
 
-@Override
-default Spliterator<Object> spliterator() {
-    return Iterable.super.spliterator();
-}
+    @Override
+    default Spliterator<Object> spliterator() {
+        return Iterable.super.spliterator();
+    }
 
 }

@@ -2,7 +2,7 @@ package practice.collections;
 
 import java.util.Iterator;
 
-public class ArrayList implements List{
+public class ArrayList implements List {
 
     private Object[] obj;
     private int capacity;

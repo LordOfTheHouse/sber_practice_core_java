@@ -162,12 +162,9 @@ public class TestLinkedList {
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
-        LinkedList testSubList1 = 
-            (LinkedList) testArr.subList(1, 2);
-        LinkedList testSubList2 = 
-            (LinkedList) testArr.subList(2, 4);
-        LinkedList testSubList3 = 
-            (LinkedList) testArr.subList(0, 4);
+        LinkedList testSubList1 = (LinkedList) testArr.subList(1, 2);
+        LinkedList testSubList2 = (LinkedList) testArr.subList(2, 4);
+        LinkedList testSubList3 = (LinkedList) testArr.subList(0, 4);
         if (testSubList1.get(0).equals(1))
             System.out.println(true);
         else

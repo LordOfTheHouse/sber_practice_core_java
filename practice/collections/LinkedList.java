@@ -3,7 +3,7 @@ package practice.collections;
 import java.util.*;
 
 public class LinkedList implements List, Deque {
-    
+
     private Node begin;
     private Node end;
     private int size;
