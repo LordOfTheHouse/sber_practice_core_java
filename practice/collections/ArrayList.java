@@ -1,6 +1,8 @@
 package practice.collections;
 
-public class ArrayList implements List {
+import java.util.Iterator;
+
+public class ArrayList implements List{
 
     private Object[] obj;
     private int capacity;
@@ -9,7 +11,7 @@ public class ArrayList implements List {
     public ArrayList(ArrayList aList) {
         obj = aList.getObj();
         capacity = aList.getCapacity();
-        size = aList.getSize();
+        size = aList.size();
     }
 
     public ArrayList() {
@@ -180,8 +182,9 @@ public class ArrayList implements List {
         return capacity;
     }
 
-    public int getSize() {
-        return size;
+    @Override
+    public Iterator<Object> iterator() {
+        return new ListIterator(this);
     }
 
 }

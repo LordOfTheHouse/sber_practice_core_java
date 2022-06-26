@@ -3,6 +3,7 @@ package practice.collections;
 import java.util.*;
 
 public class LinkedList implements List, Deque {
+    
     private Node begin;
     private Node end;
     private int size;
@@ -293,5 +294,10 @@ public class LinkedList implements List, Deque {
             size--;
             return el;
         }
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new ListIterator(this);
     }
 }

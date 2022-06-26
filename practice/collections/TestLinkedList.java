@@ -1,5 +1,6 @@
 package practice.collections;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class TestLinkedList {
@@ -19,6 +20,7 @@ public class TestLinkedList {
         testPollLast();
         testRemoveFirst();
         testRemoveLast();
+        testIterator();
     }
 
     private static void testGet() {
@@ -405,6 +407,40 @@ public class TestLinkedList {
             System.out.println(false);
         try {
             testArr.removeLast();
+        } catch (NoSuchElementException ex) {
+            System.out.println(true);
+        }
+    }
+
+    private static void testIterator() {
+        System.out.println("TEST: Iterator");
+        LinkedList testArr = new LinkedList();
+        for (int i = 0; i < 5; i++) {
+            testArr.add(i);
+        }
+        Iterator<Object> it = testArr.iterator();
+        if (it.next() == (Object) 0)
+            System.out.println(true);
+        else
+            System.out.println(false);
+        if (it.next() == (Object) 1)
+            System.out.println(true);
+        else
+            System.out.println(false);
+        if (it.next() == (Object) 2)
+            System.out.println(true);
+        else
+            System.out.println(false);
+        if (it.next() == (Object) 3)
+            System.out.println(true);
+        else
+            System.out.println(false);
+        if (it.next() == (Object) 4)
+            System.out.println(true);
+        else
+            System.out.println(false);
+        try {
+            it.next();
         } catch (NoSuchElementException ex) {
             System.out.println(true);
         }
