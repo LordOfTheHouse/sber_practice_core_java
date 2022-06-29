@@ -40,6 +40,9 @@ public class HashMap implements Map{
         for(LinkedList li: buckets){
             if(li != null){
                 for (int i = 0; i < li.size(); i++) {
+                    if(((Entry)li.get(i)).getValue() == null){
+                        return true;
+                    }
                     if(((Entry)li.get(i)).getValue().equals(value)){
                         return true;
                     }
@@ -99,7 +102,6 @@ public class HashMap implements Map{
     @Override
     public Object put(Object key, Object value) {  
         int bucketNumber = key.hashCode() % buckets.length;
-        System.out.print(bucketNumber + " ");
         var list = buckets[bucketNumber];
         if(list != null){
             for(int i = 0; i < list.size(); i++){
