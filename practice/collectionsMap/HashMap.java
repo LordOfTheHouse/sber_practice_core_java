@@ -69,7 +69,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        int bucketNumber = key.hashCode() % buckets.length;
+        int bucketNumber = Math.abs(key.hashCode() % buckets.length);
         LinkedList<Entry<K, V>> list = buckets[bucketNumber];
         for (int i = 0; i < list.size(); i++) {
             if (((Entry<K, V>) list.get(i)).getKey().equals(key)) {
@@ -103,7 +103,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
     @Override
     public Entry<K, V> put(K key, V value) {
-        int bucketNumber = key.hashCode() % buckets.length;
+        int bucketNumber =  Math.abs(key.hashCode() % buckets.length);
         var list = buckets[bucketNumber];
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
