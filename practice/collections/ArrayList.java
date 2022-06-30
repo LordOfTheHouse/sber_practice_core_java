@@ -2,13 +2,13 @@ package practice.collections;
 
 import java.util.Iterator;
 
-public class ArrayList implements List {
+public class ArrayList<E extends Object> implements List<E> {
 
     private Object[] obj;
     private int capacity;
     private int size;
 
-    public ArrayList(ArrayList aList) {
+    public ArrayList(ArrayList<E> aList) {
         obj = aList.getObj();
         capacity = aList.getCapacity();
         size = aList.size();
@@ -21,7 +21,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void add(int index, Object item) {
+    public void add(int index, E item) {
         if (size == capacity) {
             obj = copyList();
         }
@@ -40,16 +40,16 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         } else {
-            return obj[index];
+            return (E) obj[index];
         }
     }
 
     @Override
-    public int indexOf(Object item) {
+    public int indexOf(E item) {
         for (int i = 0; i < size; i++) {
             if (obj[i].equals(item)) {
                 return i;
@@ -59,7 +59,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public int lastIndexOf(Object item) {
+    public int lastIndexOf(E item) {
         for (int i = size - 1; i >= 0; --i) {
             if (obj[i].equals(item)) {
                 return i;
@@ -69,11 +69,11 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         } else {
-            Object el = obj[index];
+            E el = (E) obj[index];
             for (int i = index; i < size; i++) {
                 obj[i] = obj[i + 1];
             }
@@ -83,7 +83,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void set(int index, Object item) {
+    public void set(int index, E item) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException();
         } else if (index == size) {
@@ -94,20 +94,20 @@ public class ArrayList implements List {
     }
 
     @Override
-    public List subList(int from, int to) {
+    public List<E> subList(int from, int to) {
         if (to > size || from < 0 || to < from || to < 0) {
             throw new IndexOutOfBoundsException();
         } else {
-            ArrayList subObj = new ArrayList();
+            ArrayList<E> subObj = new ArrayList<>();
             for (int i = from; i < to; i++) {
-                subObj.add(obj[i]);
+                subObj.add((E) obj[i]);
             }
             return subObj;
         }
     }
 
     @Override
-    public boolean add(Object item) {
+    public boolean add(E item) {
         if (size < capacity) {
             obj[size] = item;
         } else {
@@ -136,7 +136,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public boolean contains(Object item) {
+    public boolean contains(E item) {
         for (Object el : obj) {
             if (item.equals(el)) {
                 return true;
@@ -154,7 +154,7 @@ public class ArrayList implements List {
     }
 
     @Override
-    public boolean remove(Object item) {
+    public boolean remove(E item) {
         if (size == 0) {
             return false;
         }
@@ -183,8 +183,8 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Iterator<Object> iterator() {
-        return new ListIterator(this);
+    public Iterator<E> iterator() {
+        return new ListIterator<>(this);
     }
 
 }

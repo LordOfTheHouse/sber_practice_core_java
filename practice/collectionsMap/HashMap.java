@@ -2,14 +2,13 @@ package practice.collectionsMap;
 
 import practice.collections.*;
 
-public class HashMap implements Map{
+public class HashMap<K, V> implements Map<K, V> {
 
-    private LinkedList[] buckets;
+    private LinkedList<Entry<K, V>>[] buckets;
     private int capacity;
     private int size;
-    
 
-    public HashMap(){
+    public HashMap() {
         capacity = (int) Math.pow(2, 20);
         size = 0;
         buckets = new LinkedList[capacity];
@@ -22,33 +21,13 @@ public class HashMap implements Map{
     }
 
     @Override
-    public boolean containsKey(Object key) {
-        for(LinkedList li: buckets){
-            if(li != null){
+    public boolean containsKey(K key) {
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
-                    if(((Entry)li.get(i)).getKey().equals(key)){
+                    if (((Entry<K, V>) li.get(i)).getKey().equals(key)) {
                         return true;
                     }
-                }
-        }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean containsValue(Object value) {
-        for(LinkedList li: buckets){
-            if(li != null){
-                for (int i = 0; i < li.size(); i++) {
-                    Object buff = ((Entry)li.get(i)).getValue();
-                    if(buff == null && value == null){
-                        return true;
-                    }else if(buff == null){
-                        continue;
-                    }else if(buff.equals(value)){
-                        return true;
-                    }
-                    
                 }
             }
         }
@@ -56,10 +35,30 @@ public class HashMap implements Map{
     }
 
     @Override
-    public Collection entrySet() {
-        ArrayList entry = new ArrayList();
-        for (LinkedList li : buckets) {
-            if(li != null){
+    public boolean containsValue(Object value) {
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
+                for (int i = 0; i < li.size(); i++) {
+                    V buff = ((Entry<K, V>) li.get(i)).getValue();
+                    if (buff == null && value == null) {
+                        return true;
+                    } else if (buff == null) {
+                        continue;
+                    } else if (buff.equals(value)) {
+                        return true;
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Collection<Entry<K, V>> entrySet() {
+        ArrayList<Entry<K, V>> entry = new ArrayList<>();
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
                     entry.add(li.get(i));
                 }
@@ -69,12 +68,12 @@ public class HashMap implements Map{
     }
 
     @Override
-    public Object get(Object key) {
+    public V get(K key) {
         int bucketNumber = key.hashCode() % buckets.length;
-        LinkedList list = buckets[bucketNumber];
-        for(int i = 0; i < list.size(); i++){
-            if(((Entry) list.get(i)).getKey().equals(key)){
-                return ((Entry) list.get(i)).getValue();
+        LinkedList<Entry<K, V>> list = buckets[bucketNumber];
+        for (int i = 0; i < list.size(); i++) {
+            if (((Entry<K, V>) list.get(i)).getKey().equals(key)) {
+                return ((Entry<K, V>) list.get(i)).getValue();
             }
         }
         return null;
@@ -82,20 +81,20 @@ public class HashMap implements Map{
 
     @Override
     public boolean isEmpty() {
-        if(size == 0){
+        if (size == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     @Override
-    public Collection keySet() {
-        ArrayList keys = new ArrayList();
-        for (LinkedList li : buckets) {
-            if(li != null){
+    public Collection<K> keySet() {
+        ArrayList<K> keys = new ArrayList<>();
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
-                    keys.add(((Entry)li.get(i)).getKey());
+                    keys.add(((Entry<K, V>) li.get(i)).getKey());
                 }
             }
         }
@@ -103,33 +102,33 @@ public class HashMap implements Map{
     }
 
     @Override
-    public Object put(Object key, Object value) {  
+    public Entry<K, V> put(K key, V value) {
         int bucketNumber = key.hashCode() % buckets.length;
         var list = buckets[bucketNumber];
-        if(list != null){
-            for(int i = 0; i < list.size(); i++){
-                if(((Entry) list.get(i)).getKey().equals(key)){
-                    ((Entry) list.get(i)).setValue(value);
-                    return new Entry(key, value);
+        if (list != null) {
+            for (int i = 0; i < list.size(); i++) {
+                if (((Entry<K, V>) list.get(i)).getKey().equals(key)) {
+                    ((Entry<K, V>) list.get(i)).setValue(value);
+                    return new Entry<>(key, value);
                 }
             }
-        }else{
-            list = new LinkedList();
+        } else {
+            list = new LinkedList<Entry<K, V>>();
         }
-        list.addLast(new Entry(key, value));
+        list.addLast(new Entry<>(key, value));
         buckets[bucketNumber] = list;
         size++;
-        return new Entry(key, value);
+        return new Entry<>(key, value);
     }
 
     @Override
-    public Object remove(Object key) {
-        for (LinkedList li : buckets) {
-            if(li != null){
+    public V remove(K key) {
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
-                    if(((Entry)li.get(i)).getKey().equals(key)){
+                    if (((Entry<K, V>) li.get(i)).getKey().equals(key)) {
                         size--;
-                        return ((Entry) li.remove(i)).getValue();
+                        return ((Entry<K, V>) li.remove(i)).getValue();
                     }
                 }
             }
@@ -143,16 +142,16 @@ public class HashMap implements Map{
     }
 
     @Override
-    public Collection values() {
-        ArrayList vals = new ArrayList();
-        for (LinkedList li : buckets) {
-            if(li != null){
+    public Collection<V> values() {
+        ArrayList<V> vals = new ArrayList<>();
+        for (LinkedList<Entry<K, V>> li : buckets) {
+            if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
-                    vals.add(((Entry)li.get(i)).getValue());
+                    vals.add(((Entry<K, V>) li.get(i)).getValue());
                 }
             }
         }
         return vals;
     }
-    
+
 }

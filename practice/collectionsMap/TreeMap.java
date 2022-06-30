@@ -3,9 +3,9 @@ package practice.collectionsMap;
 import practice.collections.ArrayList;
 import practice.collections.Collection;
 
-public class TreeMap implements Map {
+public class TreeMap<K, V> implements Map<K, V> {
 
-    private Node rootNode;
+    private Node<Entry<K, V>> rootNode;
     private int size;
     private boolean flagSearchValue = false;
 
@@ -23,12 +23,12 @@ public class TreeMap implements Map {
 
     /* Поиск ключа */
     @Override
-    public boolean containsKey(Object key) {
+    public boolean containsKey(K key) {
         flagSearchValue = false;
         return searchKey(rootNode, key);
     }
 
-    private boolean searchKey(Node child, Object key) {
+    private boolean searchKey(Node<Entry<K, V>> child, K key) {
         if (key.equals(getKeyEntry(child))) {
             flagSearchValue = true;
         }
@@ -43,12 +43,12 @@ public class TreeMap implements Map {
 
     /* Поиск значения */
     @Override
-    public boolean containsValue(Object value) {
+    public boolean containsValue(V value) {
         flagSearchValue = false;
         return searchValue(rootNode, value);
     }
 
-    private boolean searchValue(Node child, Object value) {
+    private boolean searchValue(Node<Entry<K, V>> child, V value) {
         if (value.equals(getValueEntry(child))) {
             flagSearchValue = true;
         }
@@ -63,13 +63,13 @@ public class TreeMap implements Map {
 
     /* Возвращает список со всеми всеми парами ключ-значение хранящимися в дереве */
     @Override
-    public Collection entrySet() {
-        ArrayList li = new ArrayList();
+    public Collection<Entry<K, V>> entrySet() {
+        ArrayList<Entry<K, V>> li = new ArrayList<>();
         addEntry(rootNode, li);
         return li;
     }
 
-    private void addEntry(Node child, ArrayList li) {
+    private void addEntry(Node<Entry<K, V>> child, ArrayList<Entry<K, V>> li) {
         li.add(child.getValue());
         if (child.getLeft() != null) {
             addEntry(child.getLeft(), li);
@@ -84,8 +84,8 @@ public class TreeMap implements Map {
      * спускаемся вниз по дереву пока не найдем нужный элемент
      */
     @Override
-    public Object get(Object key) {
-        Node child = rootNode;
+    public V get(K key) {
+        Node<Entry<K, V>> child = rootNode;
         while (true) {
             if (key.equals(getKeyEntry(child))) {
                 return getValueEntry(child);
@@ -115,14 +115,14 @@ public class TreeMap implements Map {
 
     /* Возвращает ключи хранящиеся в дереве */
     @Override
-    public Collection keySet() {
-        ArrayList li = new ArrayList();
+    public Collection<K> keySet() {
+        ArrayList<K> li = new ArrayList<>();
         addKey(rootNode, li);
         return li;
 
     }
 
-    private void addKey(Node child, ArrayList li) {
+    private void addKey(Node<Entry<K, V>> child, ArrayList<K> li) {
         li.add(getKeyEntry(child));
         if (child.getLeft() != null) {
             addKey(child.getLeft(), li);
@@ -138,37 +138,37 @@ public class TreeMap implements Map {
      * Элементы с меньшим hash-кодом вставляются влево, с большим вправо.
      */
     @Override
-    public Object put(Object key, Object value) {
-        Node newNode = new Node(new Entry(key, value));
+    public Entry<K, V> put(K key, V value) {
+        Node<Entry<K, V>> newNode = new Node<>(new Entry<>(key, value));
         if (rootNode == null) {
             size++;
             rootNode = newNode;
         } else {
-            Node parent;
-            Node child = rootNode;
+            Node<Entry<K, V>> parent;
+            Node<Entry<K, V>> child = rootNode;
             while (true) {
                 parent = child;
                 if (getKeyEntry(child).equals(key)) {
-                    child.setValue(new Entry(key, value));
-                    return newNode;
+                    child.setValue(new Entry<>(key, value));
+                    return newNode.getValue();
                 } else if (key.hashCode() < getKeyEntry(child).hashCode()) {
                     child = child.getLeft();
                     if (child == null) {
                         parent.setLeft(newNode);
                         size++;
-                        return newNode;
+                        return newNode.getValue();
                     }
                 } else {
                     child = child.getRight();
                     if (child == null) {
                         parent.setRight(newNode);
                         size++;
-                        return newNode;
+                        return newNode.getValue();
                     }
                 }
             }
         }
-        return newNode;
+        return newNode.getValue();
     }
 
     /*
@@ -183,10 +183,10 @@ public class TreeMap implements Map {
      * элемент.
      */
     @Override
-    public Object remove(Object key) {
+    public V remove(K key) {
 
-        Node currentNode = rootNode;
-        Node parentNode = rootNode;
+        Node<Entry<K, V>> currentNode = rootNode;
+        Node<Entry<K, V>> parentNode = rootNode;
 
         boolean isLeft = true;
 
@@ -235,7 +235,7 @@ public class TreeMap implements Map {
         }
 
         else {
-            Node heir = receiveHeir(currentNode);
+            Node<Entry<K, V>> heir = receiveHeir(currentNode);
             if (currentNode == rootNode) {
                 rootNode = heir;
             } else if (isLeft) {
@@ -249,20 +249,20 @@ public class TreeMap implements Map {
     }
 
     /* Функция возвращает ключ из Entry */
-    private Object getKeyEntry(Node node) {
-        return ((Entry) node.getValue()).getKey();
+    private K getKeyEntry(Node<Entry<K, V>> node) {
+        return ((Entry<K, V>) node.getValue()).getKey();
     }
 
     /* Функция возвращает значение из Entry */
-    private Object getValueEntry(Node node) {
-        return ((Entry) node.getValue()).getValue();
+    private V getValueEntry(Node<Entry<K, V>> node) {
+        return ((Entry<K, V>) node.getValue()).getValue();
     }
 
     /* Функция возвращеает узел для замены */
-    private Node receiveHeir(Node node) {
-        Node parentNode = node;
-        Node heirNode = node;
-        Node currentNode = node.getRight();
+    private Node<Entry<K, V>> receiveHeir(Node<Entry<K, V>> node) {
+        Node<Entry<K, V>> parentNode = node;
+        Node<Entry<K, V>> heirNode = node;
+        Node<Entry<K, V>> currentNode = node.getRight();
         while (currentNode != null) {
             parentNode = heirNode;
             heirNode = currentNode;
@@ -283,13 +283,13 @@ public class TreeMap implements Map {
 
     /* Возвращает все значения хранящиеся в дереве */
     @Override
-    public Collection values() {
-        ArrayList li = new ArrayList();
+    public Collection<V> values() {
+        ArrayList<V> li = new ArrayList<>();
         addValue(rootNode, li);
         return li;
     }
 
-    private void addValue(Node child, ArrayList li) {
+    private void addValue(Node<Entry<K, V>> child, ArrayList<V> li) {
         li.add(getValueEntry(child));
         if (child.getLeft() != null) {
             addValue(child.getLeft(), li);

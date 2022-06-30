@@ -2,11 +2,11 @@ package practice.collections;
 
 import java.util.*;
 
-public class ListIterator implements Iterator<Object> {
-    private List arr;
+public class ListIterator<E> implements Iterator<E> {
+    private List<E> arr;
     private int numberElement;
 
-    public ListIterator(List arr) {
+    public ListIterator(List<E> arr) {
         this.arr = arr;
         this.numberElement = 0;
     }
@@ -21,7 +21,7 @@ public class ListIterator implements Iterator<Object> {
     }
 
     @Override
-    public Object next() {
+    public E next() {
         if (hasNext()) {
             numberElement++;
             return arr.get(numberElement - 1);

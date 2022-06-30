@@ -18,7 +18,7 @@ public class TestArrayList {
 
     private static void testGet() {
         System.out.println("TEST: GET");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -44,7 +44,7 @@ public class TestArrayList {
 
     private static void testIndexOf() {
         System.out.println("TEST: INDEX OF");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -64,7 +64,7 @@ public class TestArrayList {
 
     private static void testLastIndexOf() {
         System.out.println("TEST: LAST INDEX OF");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -84,7 +84,7 @@ public class TestArrayList {
 
     private static void testRemove() {
         System.out.println("TEST: REMOVE");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -117,7 +117,7 @@ public class TestArrayList {
 
     private static void testSet() {
         System.out.println("TEST: SET");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -151,13 +151,16 @@ public class TestArrayList {
 
     private static void testSubList() {
         System.out.println("TEST: SUB LIST");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
-        ArrayList testSubList1 = (ArrayList) testArr.subList(1, 2);
-        ArrayList testSubList2 = (ArrayList) testArr.subList(2, 4);
-        ArrayList testSubList3 = (ArrayList) testArr.subList(0, 4);
+        ArrayList<Integer> testSubList1 = 
+            (ArrayList<Integer>) testArr.subList(1, 2);
+        ArrayList<Integer> testSubList2 = 
+            (ArrayList<Integer>) testArr.subList(2, 4);
+        ArrayList<Integer> testSubList3 = 
+            (ArrayList<Integer>) testArr.subList(0, 4);
         if (testSubList1.get(0).equals(1))
             System.out.println(true);
         else
@@ -179,7 +182,7 @@ public class TestArrayList {
 
     private static void testContains() {
         System.out.println("TEST: CONTAINS");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -207,7 +210,7 @@ public class TestArrayList {
 
     private static void testIsEmpty() {
         System.out.println("TEST: IS EMPTY");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         if (testArr.isEmpty())
             System.out.println(true);
         else
@@ -228,7 +231,7 @@ public class TestArrayList {
 
     private static void testSize() {
         System.out.println("TEST: Size");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
@@ -252,28 +255,28 @@ public class TestArrayList {
 
     private static void testIterator() {
         System.out.println("TEST: Iterator");
-        ArrayList testArr = new ArrayList();
+        ArrayList<Integer> testArr = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             testArr.add(i);
         }
-        Iterator<Object> it = testArr.iterator();
-        if (it.next() == (Object) 0)
+        Iterator<Integer> it = testArr.iterator();
+        if (it.next() == 0)
             System.out.println(true);
         else
             System.out.println(false);
-        if (it.next() == (Object) 1)
+        if (it.next() == 1)
             System.out.println(true);
         else
             System.out.println(false);
-        if (it.next() == (Object) 2)
+        if (it.next() == 2)
             System.out.println(true);
         else
             System.out.println(false);
-        if (it.next() == (Object) 3)
+        if (it.next() == 3)
             System.out.println(true);
         else
             System.out.println(false);
-        if (it.next() == (Object) 4)
+        if (it.next() == 4)
             System.out.println(true);
         else
             System.out.println(false);

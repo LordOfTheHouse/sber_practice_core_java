@@ -1,27 +1,27 @@
 package practice.collectionsMap;
 
-public class Entry {
-    private Object key;
-    private Object value;
+public class Entry<K, V> {
+    private K key;
+    private V value;
     
-    public Entry(Object key, Object value) {
+    public Entry(K key, V value) {
         this.key = key;
         this.value = value;
     }
 
-    public Object getKey() {
+    public K getKey() {
         return key;
     }
 
-    public void setKey(Object key) {
+    public void setKey(K key) {
         this.key = key;
     }
 
-    public Object getValue() {
+    public V getValue() {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(V value) {
         this.value = value;
     }
 
