@@ -76,6 +76,7 @@ public class TreeMap<K, V> implements Map<K, V> {
     }
 
     private void addEntry(Node<Entry<K, V>> child, ArrayList<Entry<K, V>> li) {
+        System.out.println(child);
         li.add(child.getValue());
         if (child.getLeft() != null) {
             addEntry(child.getLeft(), li);
@@ -277,6 +278,9 @@ public class TreeMap<K, V> implements Map<K, V> {
         if (heirNode != node.getRight()) {
             parentNode.setLeft(heirNode.getRight());
             heirNode.setRight(node.getRight());
+            heirNode.setLeft(node.getLeft());
+        }else{
+            heirNode.setLeft(node.getLeft());
         }
         return heirNode;
     }
