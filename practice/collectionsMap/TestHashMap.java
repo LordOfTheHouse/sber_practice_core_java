@@ -27,7 +27,6 @@ public class TestHashMap {
         System.out.println(hm.containsKey(9));
         System.out.println(hm.containsKey(2235));
         System.out.println(hm.containsKey("do"));
-        System.out.println(hm.containsValue("321"));
         System.out.println("Test VALUES");
         for (Object el : hm.values()) {
             System.out.println(el);

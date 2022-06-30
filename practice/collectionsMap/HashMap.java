@@ -40,12 +40,15 @@ public class HashMap implements Map{
         for(LinkedList li: buckets){
             if(li != null){
                 for (int i = 0; i < li.size(); i++) {
-                    if(((Entry)li.get(i)).getValue() == null){
+                    Object buff = ((Entry)li.get(i)).getValue();
+                    if(buff == null && value == null){
+                        return true;
+                    }else if(buff == null){
+                        continue;
+                    }else if(buff.equals(value)){
                         return true;
                     }
-                    if(((Entry)li.get(i)).getValue().equals(value)){
-                        return true;
-                    }
+                    
                 }
             }
         }
@@ -125,9 +128,8 @@ public class HashMap implements Map{
             if(li != null){
                 for (int i = 0; i < li.size(); i++) {
                     if(((Entry)li.get(i)).getKey().equals(key)){
-                        li.remove(i);
                         size--;
-                        return null;
+                        return ((Entry) li.remove(i)).getValue();
                     }
                 }
             }
