@@ -2,6 +2,8 @@ package practice.collectionsMap;
 
 public class TestHashMap {
     public static void main(String[] args) {
+
+
         HashMap<Integer, String> hm = new HashMap<>();
         hm.put(1, "1");
         hm.put(2, "2");
