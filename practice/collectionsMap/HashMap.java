@@ -35,7 +35,7 @@ public class HashMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public boolean containsValue(Object value) {
+    public boolean containsValue(V value) {
         for (LinkedList<Entry<K, V>> li : buckets) {
             if (li != null) {
                 for (int i = 0; i < li.size(); i++) {
