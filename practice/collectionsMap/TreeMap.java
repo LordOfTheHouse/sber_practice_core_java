@@ -49,8 +49,14 @@ public class TreeMap<K, V> implements Map<K, V> {
     }
 
     private boolean searchValue(Node<Entry<K, V>> child, V value) {
-        if (value.equals(getValueEntry(child))) {
-            flagSearchValue = true;
+        try{
+            if (getValueEntry(child).equals(value)) {
+                flagSearchValue = true;
+            }
+        }catch(NullPointerException ex){
+            if(value == null){
+                flagSearchValue = true;
+            }
         }
         if (child.getLeft() != null && !flagSearchValue) {
             searchValue(child.getLeft(), value);

@@ -22,6 +22,7 @@ public class TestTreeMap {
         System.out.println(tm.containsValue("2"));
         System.out.println(tm.containsValue("4"));
         System.out.println(tm.containsValue("dfsdf"));
+        System.out.println(tm.containsValue(null));
         System.out.println(tm.containsValue("7"));
         System.out.println("Test CONTAINS KEY");
         System.out.println(tm.containsKey(9));
